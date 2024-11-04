@@ -14,5 +14,7 @@ app.MapGet("/People", async (DbContextClass db) =>
 
 app.MapGet("/Meeting", async (DbContextClass db) =>
 await db.meetings.ToListAsync());
+
+app.MapPost("")
 app.Run();
 
