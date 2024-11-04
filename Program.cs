@@ -23,7 +23,7 @@ if (app.Environment.IsDevelopment())
     {
         config.DocumentTitle = "Arasaka-MeetingPlanner";
         config.Path = "/swagger";
-        config.DocumentPath = "/swagger/{Arasaka-MeetingPlanner}/swagger.json";
+        config.DocumentPath = "/swagger/Arasaka-MeetingPlanner/swagger.json";
         config.DocExpansion = "list";
     });
 }
