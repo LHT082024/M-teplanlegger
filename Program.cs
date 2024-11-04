@@ -1,3 +1,4 @@
+using NSwag.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Møteplanlegger;
 using Møteplanlegger.models;
@@ -5,6 +6,15 @@ using Møteplanlegger.models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DbContextClass>(opt => opt.UseInMemoryDatabase("DbContextClass"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddOpenApiDocument(config =>
+{
+    config.DocumentName = "Arasaka MeetingPlanner";
+    config.Title = "MeetingPlanner v1";
+    config.Version = "V1";
+});
+
 var app = builder.Build();
 
 //these two get methods defines the route for the GET request It will take the People/Meeting object from the dbcontextclass
