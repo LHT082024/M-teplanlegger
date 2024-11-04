@@ -10,12 +10,23 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(config =>
 {
-    config.DocumentName = "Arasaka MeetingPlanner";
+    config.DocumentName = "Arasaka-MeetingPlanner";
     config.Title = "MeetingPlanner v1";
     config.Version = "V1";
 });
 
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+    app.UseOpenApi();
+    app.UseSwaggerUi(config =>
+    {
+        config.DocumentTitle = "Arasaka-MeetingPlanner";
+        config.Path = "/swagger";
+        config.DocumentPath = "/swagger/{Arasaka-MeetingPlanner}/swagger.json";
+        config.DocExpansion = "list";
+    });
+}
 
 //these two get methods defines the route for the GET request It will take the People/Meeting object from the dbcontextclass
 //Then convert the objects to a list of People/Meeting-objects and then return the list
