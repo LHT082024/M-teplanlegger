@@ -51,3 +51,4 @@ C:\Users\lucie\Documents\Intro-HtmlCss\canvasOppgaver\Møteplanlegger\obj\Debug\
 C:\Users\lucie\Documents\Intro-HtmlCss\canvasOppgaver\Møteplanlegger\obj\Debug\net8.0\Møteplanlegger.pdb
 C:\Users\lucie\Documents\Intro-HtmlCss\canvasOppgaver\Møteplanlegger\obj\Debug\net8.0\Møteplanlegger.genruntimeconfig.cache
 C:\Users\lucie\Documents\Intro-HtmlCss\canvasOppgaver\Møteplanlegger\obj\Debug\net8.0\ref\Møteplanlegger.dll
+C:\Users\lucie\Documents\Intro-HtmlCss\canvasOppgaver\Møteplanlegger\bin\Debug\net8.0\Arasaka-MeetingPlanner.json
