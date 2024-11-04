@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DbContextClass>(opt => opt.UseInMemoryDatabase("DbContextClass"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(config =>
 {
@@ -59,7 +60,7 @@ app.MapPost("/people", async (People people, DbContextClass db) =>
     db.peoples.Add(people);
     await db.SaveChangesAsync();
 
-    return Results.Created($"/people/{people.EmployeeNumber}", people);
+    return Results.Created($"/people/{people.Id}", people);
 });
 
 app.MapPost("/meeting", async (Meeting meeting, DbContextClass db) =>
@@ -67,7 +68,7 @@ app.MapPost("/meeting", async (Meeting meeting, DbContextClass db) =>
     db.meetings.Add(meeting);
     await db.SaveChangesAsync();
 
-    return Results.Created($"/people/{meeting.MeetingId}", meeting);
+    return Results.Created($"/people/{meeting.Id}", meeting);
 });
 
 

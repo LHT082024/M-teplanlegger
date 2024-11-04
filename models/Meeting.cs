@@ -9,7 +9,7 @@ namespace Møteplanlegger.models
     {
         public string? Place { get; set; }
 
-        public int MeetingId { get; set; }
+        public int Id { get; set; }
         public string? Subject { get; set; }
         public int Attendees { get; set; }
     }

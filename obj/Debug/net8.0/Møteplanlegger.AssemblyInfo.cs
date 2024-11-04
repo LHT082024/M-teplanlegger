@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Møteplanlegger")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17bbabbf357f065e53152cfcc83091abc807bad2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8159ce7eda299586f4a1dd3270444ab9e97938b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Møteplanlegger")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Møteplanlegger")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
