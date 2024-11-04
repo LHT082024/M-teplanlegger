@@ -9,8 +9,10 @@ namespace Møteplanlegger
 {
     public class DbContextClass : DbContext
     {
-        public DbSet<People> Peoples { get; set; }
-        public DbSet<Meeting> Meetings { get; set; }
+        public DbContextClass(DbContextOptions<DbContextClass> options)
+                : base(options) { }
+        public DbSet<People> peoples => Set<People>();
 
+        public DbSet<Meeting> meetings => Set<Meeting>();
     }
 }
