@@ -36,18 +36,9 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-
-
-
-app.MapGet("/meeting", async (DbContextClass db) =>
-await db.meetings.ToListAsync());
-
-//These two get methods once again defines the route for the GET request
-//but this time we can be more specific instead of getting a list of all the meetings/people
-//we instead can get a specific meeting or person. 
-
-
-
+//this line makes sure that the main page of the website is /swagger
+app.MapGet("/", () => Results.Redirect("/swagger"));
+app.MapControllers();
 
 app.Run();
 
