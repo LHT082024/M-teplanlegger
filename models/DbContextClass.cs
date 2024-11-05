@@ -7,6 +7,8 @@ using Møteplanlegger.models;
 
 namespace Møteplanlegger
 {
+
+    //this class gives the program the option to interact with a databse using entetiyFramework.
     public class DbContextClass : DbContext
     {
         public DbContextClass(DbContextOptions<DbContextClass> options)
