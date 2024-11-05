@@ -53,6 +53,23 @@ namespace Møteplanlegger.controllers
 
         [HttpPut("id")]
         public async Task<IActionResult> UpdatePerson(int id, [FromBody] People updatePerson)
+        {
+            var people = await _context.peoples.FindAsync(id);
+            if (people == null)
+            {
+                return NotFound();
+            }
+
+            people.Id = updatePerson.Id;
+            people.Name = updatePerson.Name;
+            people.Age = updatePerson.Age;
+            people.Title = updatePerson.Title;
+
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+
 
     }
 }
