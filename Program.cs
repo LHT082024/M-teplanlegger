@@ -19,6 +19,7 @@ builder.Services.AddOpenApiDocument(config =>
     config.Version = "V1";
 });
 
+
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
@@ -32,19 +33,33 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+//this line makes sure that the main page of the website is /swagger
 app.MapGet("/", () => Results.Redirect("/swagger"));
 
-//these two get methods defines the route for the GET request It will take the People/Meeting object from the dbcontextclass
-//Then convert the objects to a list of People/Meeting-objects and then return the list
+
+//under we have two large segments of code to handle the people model and the meeting model.
+//all of them starts with first defining the route in the DbContext class.
+
+//the get method will take all the objects from the peopleclass and convert them to a list 
+//and then return the list
+
+
 app.MapGet("/people", async (DbContextClass db) =>
   await db.peoples.ToListAsync());
 
+
+//This method is very similar method to the get method above except we have added id in path. 
+//this means that instead of getting a list of people objects.
+//we instead get a single people object. Which people object we get.
+//is defined by the id we type in when we search.
 app.MapGet("/people/{id}", async (int id, DbContextClass db) =>
 await db.peoples.FindAsync(id)
 is People people
 ? Results.Ok(people)
 : Results.NotFound());
 
+//the post method is a method made to create new people objects on the website and then store them
+//in the database.
 app.MapPost("/people", async (People people, DbContextClass db) =>
 {
     db.peoples.Add(people);
