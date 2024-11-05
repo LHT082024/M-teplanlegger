@@ -41,27 +41,27 @@ namespace Møteplanlegger.controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreatePerson([FromBody] People people)
+        public async Task<IActionResult> CreateMeeting([FromBody] Meeting meeting)
         {
-            people.Id = 0;
-            _context.peoples.Add(people);
+            meeting.Id = 0;
+            _context.meetings.Add(meeting);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetAllPeople), new { id = people.Id }, people);
+            return CreatedAtAction(nameof(GetAllMeetings), new { id = meeting.Id }, meeting);
         }
 
         [HttpPut("id")]
-        public async Task<IActionResult> UpdatePerson(int id, [FromBody] People updatePerson)
+        public async Task<IActionResult> UpdateMeeting(int id, [FromBody] Meeting updateMeeting)
         {
-            var people = await _context.peoples.FindAsync(id);
-            if (people == null)
+            var meeting = await _context.meetings.FindAsync(id);
+            if (meeting == null)
             {
                 return NotFound();
             }
 
-            people.Id = updatePerson.Id;
-            people.Name = updatePerson.Name;
-            people.Age = updatePerson.Age;
-            people.Title = updatePerson.Title;
+            meeting.Id = updateMeeting.Id;
+            meeting.Place = updateMeeting.Place;
+            meeting.Attendees = updateMeeting.Attendees;
+            meeting.Subject = updateMeeting.Subject;
 
             await _context.SaveChangesAsync();
             return NoContent();
@@ -70,17 +70,16 @@ namespace Møteplanlegger.controllers
         [HttpDelete("id")]
         public async Task<IActionResult> Delete(int id)
         {
-            var people = await _context.peoples.FindAsync(id);
-            if (people == null)
+            var meeting = await _context.meetings.FindAsync(id);
+            if (meeting == null)
             {
                 return NotFound();
             }
 
-            _context.peoples.Remove(people);
+            _context.meetings.Remove(meeting);
             await _context.SaveChangesAsync();
             return NoContent();
 
         }
     }
-}
 }
