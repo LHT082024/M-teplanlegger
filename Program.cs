@@ -3,13 +3,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Møteplanlegger;
 using Møteplanlegger.models;
+using Møteplanlegger.Migrations;
+using Møteplanlegger.controllers;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DbContextClass>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
+builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(config =>
@@ -35,6 +38,9 @@ if (app.Environment.IsDevelopment())
 
 //this line makes sure that the main page of the website is /swagger
 app.MapGet("/", () => Results.Redirect("/swagger"));
+app.MapControllers();
+
+
 
 
 //under we have two large segments of code to handle the people model and the meeting model.
@@ -80,17 +86,17 @@ app.MapPut("/people/{id}", async (int id, People inputPeople, DbContextClass db)
     return Results.NoContent();
 });
 
-app.MapDelete("/people/{id}", async (int id, DbContextClass db) =>
-{
-    if (await db.peoples.FindAsync(id) is People people)
-    {
-        db.peoples.Remove(people);
-        await db.SaveChangesAsync();
-        return Results.NoContent();
-    }
+// app.MapDelete("/people/{id}", async (int id, DbContextClass db) =>
+// {
+//     if (await db.peoples.FindAsync(id) is People people)
+//     {
+//         db.peoples.Remove(people);
+//         await db.SaveChangesAsync();
+//         return Results.NoContent();
+//     }
 
-    return Results.NotFound();
-});
+//     return Results.NotFound();
+// });
 
 app.MapGet("/meeting", async (DbContextClass db) =>
 await db.meetings.ToListAsync());
