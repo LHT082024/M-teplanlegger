@@ -14,6 +14,8 @@ builder.Services.AddDbContext<DbContextClass>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddControllers();
 
+
+//sets up swagger giving it a name and all that stuff
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(config =>
 {
@@ -23,6 +25,7 @@ builder.Services.AddOpenApiDocument(config =>
 });
 
 
+//this configures the swagger UI
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {

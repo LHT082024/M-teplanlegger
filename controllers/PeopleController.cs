@@ -31,6 +31,8 @@ namespace Møteplanlegger.controllers
             return Ok(people);
         }
 
+
+        //this lets you search for a specific object inside the people table
         [HttpGet("id:int")]
         public async Task<IActionResult> GetPeopleId([FromRoute] int id)
         {
@@ -42,6 +44,7 @@ namespace Møteplanlegger.controllers
 
         }
 
+        //this gives the ability to create a new people object from the people class 
         [HttpPost]
         public async Task<IActionResult> CreatePerson([FromBody] People people)
         {
@@ -51,6 +54,10 @@ namespace Møteplanlegger.controllers
             return CreatedAtAction(nameof(GetAllPeople), new { id = people.Id }, people);
         }
 
+
+
+        //Typing in an Id I this method gives you the option of searching for a specific object created
+        //from the people class and modifying it
         [HttpPut("id")]
         public async Task<IActionResult> UpdatePerson(int id, [FromBody] People updatePerson)
         {
@@ -69,6 +76,8 @@ namespace Møteplanlegger.controllers
             return NoContent();
         }
 
+
+        //using Id you can search and delete a specific object created from the people class.
         [HttpDelete("id")]
         public async Task<IActionResult> Delete(int id)
         {
