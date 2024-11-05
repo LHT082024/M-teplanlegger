@@ -1,5 +1,6 @@
 using NSwag.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 using Møteplanlegger;
 using Møteplanlegger.models;
 
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DbContextClass>(opt => opt.UseInMemoryDatabase("DbContextClass"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddDbContext<DbContextClass>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(config =>
@@ -28,6 +31,7 @@ if (app.Environment.IsDevelopment())
         config.DocExpansion = "list";
     });
 }
+
 
 //these two get methods defines the route for the GET request It will take the People/Meeting object from the dbcontextclass
 //Then convert the objects to a list of People/Meeting-objects and then return the list
