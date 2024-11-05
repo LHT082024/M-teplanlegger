@@ -12,11 +12,11 @@ namespace Møteplanlegger.controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PeopleController : ControllerBase
+    public class MeetingController : ControllerBase
     {
         private readonly DbContextClass _context;
 
-        public PeopleController(DbContextClass context)
+        public MeetingController(DbContextClass context)
         {
             _context = context;
         }
@@ -24,23 +24,21 @@ namespace Møteplanlegger.controllers
         //this get method takes the people objects in the people model and converts it to a list and then
         //displays the list
         [HttpGet]
-        public async Task<IActionResult> GetAllPeople()
+        public async Task<IActionResult> GetAllMeetings()
         {
-            var people = await _context.peoples.ToListAsync();
+            var meeting = await _context.meetings.ToListAsync();
 
-            return Ok(people);
+            return Ok(meeting);
         }
 
         [HttpGet("id:int")]
-        public async Task<IActionResult> GetPeopleId([FromRoute] int id)
+        public async Task<IActionResult> GetMeetingId([FromRoute] int id)
         {
 
-            var people = await _context.peoples.FindAsync(id);
-            return Ok(people);
-
-
-
+            var meeting = await _context.meetings.FindAsync(id);
+            return Ok(meeting);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> CreatePerson([FromBody] People people)
@@ -84,4 +82,5 @@ namespace Møteplanlegger.controllers
 
         }
     }
+}
 }
